@@ -16,7 +16,10 @@ entry2 = Entry(root)
 entry3 = Entry(root)
 entry4 = Entry(root)
 
-
+#Buttons labeled here
+button1 = Button(root, text="Save")
+button2 = Button(root, text="Delete")
+button3 = Button(root, text="Exit")
 
 
 
@@ -35,6 +38,10 @@ entry2.grid(column=1, row=2, columnspan=2)
 entry3.grid(column=1, row=4, columnspan=2)
 entry4.grid(column=1, row=6)
 
+#Button positions
+button1.grid(column=3, row=1, rowspan=4)
+button2.grid(column=3, row=6)
+button3.grid(column=3, row=7)
 
 
 
