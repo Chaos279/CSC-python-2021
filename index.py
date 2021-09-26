@@ -10,21 +10,30 @@ label4 = Label(root, text = "Item Hired")
 label5 = Label(root, text = "Number of Items")
 label6 = Label(root, text = "Row Number")
 
-
-
+#All the entry fields
+entry1 = Entry(root)
+entry2 = Entry(root)
+entry3 = Entry(root)
+entry4 = Entry(root)
 
 
 
 
 
 #labels placed on the grid
-label1.grid(column=1, row=0, columnspan=2)
+label1.grid(column=1, row=0, columnspan=3)
 label2.grid(column=0, row=1)
 label3.grid(column=0, row=2)
 label4.grid(column=0, row=3)
 label5.grid(column=0, row=4)
-label6.grid(column=0, row=5)
+label6.grid(column=0, row=6)
 
+
+# Entry field positions
+entry1.grid(column=1, row=1, columnspan=2)
+entry2.grid(column=1, row=2, columnspan=2)
+entry3.grid(column=1, row=4, columnspan=2)
+entry4.grid(column=1, row=6)
 
 
 
