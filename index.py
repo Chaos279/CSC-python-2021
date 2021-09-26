@@ -17,9 +17,33 @@ entry3 = Entry(root)
 entry4 = Entry(root)
 
 #Buttons labeled here
-button1 = Button(root, text="Save")
+button1 = Button(root, text="Save", padx = 30, pady = 10)
 button2 = Button(root, text="Delete")
-button3 = Button(root, text="Exit")
+button3 = Button(root, text="Exit", command = quit)
+
+
+
+#Button commands
+
+def quit():
+    root.destroy.pack()
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
 
 
 
