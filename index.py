@@ -3,6 +3,7 @@
       ########################################################################
 
 from tkinter import *
+from PIL import ImageTk,Image
 
 root=Tk()
 root.title("Julie's Party Hire")
@@ -14,13 +15,14 @@ root.title("Julie's Party Hire")
 global item_details, entry1, entry2, entry3, entry4, entry5, total_entries, row_count
 total_entries = 0
 item_details = []
+row_count = 0
 
 
 #Button commands
 
 def print(): #print camp details
     global item_details, entry1, entry2, entry3, entry4, entry5, total_entries, row_count
-    row_count = 0
+    
     
     while row_count < total_entries :
             Label(root, text=row_count).grid(column=0,row=row_count+9) 
@@ -97,40 +99,51 @@ def delete():
             error3 = Label(root, text="Please enter a row number", fg="red").grid(column=4, row=5)
 
     elif check(entry5.get(), int):
-        del item_details[int(entry5.get())]
-        total_entries = total_entries - 1
-        entry5.delete(0,'end')
-        #clear the last item displayed on the GUI
-        Label(root, text="                                  ").grid(column=0,row=row_count+8) 
-        Label(root, text="                                  ").grid(column=1,row=row_count+8)
-        Label(root, text="                                  ").grid(column=2,row=row_count+8)
-        Label(root, text="                                  ").grid(column=3,row=row_count+8)
-        Label(root, text="                                  ").grid(column=4,row=row_count+8)
-        #print all the items in the list
-        print()
 
+        if int(entry5.get()) > row_count:
+            for obj in root.grid_slaves(row=5, column=4):
+                    obj.destroy()
+                    error3 = Label(root, text="Please enter a valid number", fg="red").grid(column=4, row=5)
+
+        else:
+            del item_details[int(entry5.get())]
+            total_entries = total_entries - 1
+            entry5.delete(0,'end')
+            #clear the last item displayed on the GUI
+            Label(root, text="                                  ").grid(column=0,row=row_count+8) 
+            Label(root, text="                                  ").grid(column=1,row=row_count+8)
+            Label(root, text="                                  ").grid(column=2,row=row_count+8)
+            Label(root, text="                                  ").grid(column=3,row=row_count+8)
+            Label(root, text="                                  ").grid(column=4,row=row_count+8)
+            #print all the items in the list
+            print()
+
+    
     else:
             for obj in root.grid_slaves(row=5, column=4):
                 obj.destroy()
-           error3 = Label(root, text="Please enter a number", fg="red").grid(column=4, row=5)
+                error3 = Label(root, text="Please enter a number", fg="red").grid(column=4, row=5)
 
-    
 
+
+my_img = ImageTk.PhotoImage(Image.open("balloon.jpg")) # link for the image --> https://i.ebayimg.com/thumbs/images/g/OigAAOSwuTldtvxx/s-l96.jpg
+my_label = Label(image=my_img, width=50, height=75)
+my_label.grid(row=0, column=0)
 
 #All the labels formed here
-label_title = Label(root, text = "Julie's Party Hire")
-label_name = Label(root, text = "Customer Name")
-label_receipt = Label(root, text = "Receipt Number")
-label_item = Label(root, text = "Item Hired")
-label_itemno = Label(root, text = "Number of Items")
-label_rowno = Label(root, text = "Row Number")
+label_title = Label(root, text = "Julie's Party Hire", font="serif 35 bold")
+label_name = Label(root, text = "Customer Name", font="serif 10 bold")
+label_receipt = Label(root, text = "Receipt Number", font="serif 10 bold")
+label_item = Label(root, text = "Item Hired", font="serif 10 bold")
+label_itemno = Label(root, text = "Number of Items", font="serif 10 bold")
+label_rowno = Label(root, text = "Row Number", font="serif 10 bold")
 
 
-label7 = Label(root, text="  |  Row  |  ")
-label8 = Label(root, text="  |  Customer Names  |  ")
-label9 = Label(root, text="  |  Reciept Number  |  ")
-label10 = Label(root,text="  |  Item Hired  |  ")
-label0 = Label(root,text="  |  Number of Items  |  ")
+label7 = Label(root, text="  |  Row  |  ", font="serif 10 italic")
+label8 = Label(root, text="  |  Customer Names  |  ", font="serif 10 italic")
+label9 = Label(root, text="  |  Reciept Number  |  ", font="serif 10 italic")
+label10 = Label(root,text="  |  Item Hired  |  ", font="serif 10 italic")
+label0 = Label(root,text="  |  Number of Items  |  ", font="serif 10 italic")
 
 
 #All the entry fields
@@ -141,10 +154,10 @@ entry4 = Entry(root, width="40")
 entry5 = Entry(root, width="40")
 
 #Buttons placed here
-button1 = Button(root, text="Append", padx = 30, pady = 10, command = append)
-button2 = Button(root, text="Print", padx = 30, pady = 10, command = print)
-button3 = Button(root, text="Delete", padx = 20, pady = 10, command = delete)
-button4 = Button(root, text="Exit", padx = 30, pady = 10, command = quit)
+button1 = Button(root, text="Append Details", padx = 15, pady = 10, command = append, bg="green")
+button2 = Button(root, text="Print Row", padx = 25, pady = 10, command = print, bg="green")
+button3 = Button(root, text="Delete Row", padx = 20, pady = 10, command = delete, bg="red")
+button4 = Button(root, text="Exit", padx = 30, pady = 10, command = quit, fg="red")
 
 
 
