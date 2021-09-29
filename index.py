@@ -126,7 +126,7 @@ def delete():
 
 
 
-my_img = ImageTk.PhotoImage(Image.open("balloon.jpg")) # link for the image --> https://i.ebayimg.com/thumbs/images/g/OigAAOSwuTldtvxx/s-l96.jpg
+my_img = ImageTk.PhotoImage(Image.open("balloon1.jpg")) # link for the image --> https://i.ebayimg.com/thumbs/images/g/OigAAOSwuTldtvxx/s-l96.jpg
 my_label = Label(image=my_img, width=50, height=75)
 my_label.grid(row=0, column=0)
 
