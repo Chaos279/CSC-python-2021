@@ -5,6 +5,10 @@
 from tkinter import *
 
 root=Tk()
+root.title("Julie's Party Hire")
+
+
+
 
 #global variables used
 global item_details, entry1, entry2, entry3, entry4, entry5, total_entries, row_count
