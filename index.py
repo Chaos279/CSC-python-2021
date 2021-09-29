@@ -43,7 +43,7 @@ def check(data, data_type): #code used to check if the entered value is an integ
         return False            
 
 def append():  # add next item to the list
-    global item_details, entry1, entry2, entry3, entry4, entry5, total_entries, row_count, error1, error2
+    global item_details, entry1, entry2, entry3, entry4, entry5, total_entries, row_count, error1, error2, error3
     #global variables used
     if len(entry1.get()) !=1 and len(entry2.get()) !=1 and len(entry3.get()) !=1 and len(entry4.get()) !=1 and check(entry2.get(), int) and check(entry4.get(), int):
 
@@ -82,7 +82,26 @@ def append():  # add next item to the list
         error1 = Label(root, text="Only Numbers", fg="red").grid(column=4, row=4)
 
 
-    
+def delete():
+    global item_details, entry1, entry2, entry3, entry4, entry5, total_entries, row_count, error1, error2, error3
+    if entry5.get() == "":
+            for obj in root.grid_slaves(row=5, column=4):
+                obj.destroy()
+            error3 = Label(root, text="Please enter a row number", fg="red").grid(column=4, row=5)
+            
+    elif check(entry5.get(), int):
+            for obj in root.grid_slaves(row=5, column=4):
+                obj.destroy()
+            for obj in root.grid_slaves(row=int(entry5.get())+9):
+                obj.destroy()
+                
+    else:
+            for obj in root.grid_slaves(row=5, column=4):
+                obj.destroy()
+            error3 = Label(root, text="Please enter a number", fg="red").grid(column=4, row=5)
+
+
+
 
 #All the labels formed here
 label_title = Label(root, text = "Julie's Party Hire")
@@ -110,7 +129,7 @@ entry5 = Entry(root, width="40")
 #Buttons placed here
 button1 = Button(root, text="Append", padx = 30, pady = 10, command = append)
 button2 = Button(root, text="Print", padx = 30, pady = 10, command = print)
-button3 = Button(root, text="Delete", padx = 20, pady = 10)
+button3 = Button(root, text="Delete", padx = 20, pady = 10, command = delete)
 button4 = Button(root, text="Exit", padx = 30, pady = 10, command = quit)
 
 
