@@ -6,13 +6,61 @@ from tkinter import *
 
 root=Tk()
 
+#global variables used
+global item_details, entry1, entry2, entry3, entry4, entry5, total_entries
+total_entries = 0
+item_details = []
+
+
+#Button commands
+
+def quit(): #code for button3 to leave code
+    root.destroy()
+
+
+ 
+def check(data, data_type): #code used to check if the entered value is an integer
+    try:
+        data_type(data)
+        return True
+    except ValueError:
+        return False            
+
+def append():  # add next item to the list
+    global item_details, entry1, entry2, entry3, entry4, entry5, total_entries
+    #global variables used
+    if len(entry1.get()) !=0 and len(entry2.get()) !=0 and len(entry3.get()) !=0 and len(entry4.get()) !=0 and check(entry2.get(), int) and check(entry4.get(), int) <= 500 and check(entry4.get(), int) >= 1:
+
+        item_details.append([entry1.get(),entry2.get(),entry3.get(),entry4.get()])
+        print("Hello World")
+
+        
+        entry1.delete(0,'end')
+        entry2.delete(0,'end')
+        entry3.delete(0,'end')
+        entry4.delete(0,'end')
+        total_entries +=  1
+
+    elif check(entry4.get(), int):
+
+        if int(entry4.get()) =< 1 and int(entry4.get()) >= 500:
+
+            Label(root, text="Enter a number between 1 and 500", fg="red").grid(column=4, row=4)
+
+    else :
+
+        Label(root, text="Only Numbers", fg="red").grid(column=4, row=2)
+
+
+    
+
 #All the labels formed here
-label1 = Label(root, text = "Julie's Party Hire")
-label2 = Label(root, text = "Customer Name")
-label3 = Label(root, text = "Receipt Number")
-label4 = Label(root, text = "Item Hired")
-label5 = Label(root, text = "Number of Items")
-label6 = Label(root, text = "Row Number")
+label_title = Label(root, text = "Julie's Party Hire")
+label_name = Label(root, text = "Customer Name")
+label_receipt = Label(root, text = "Receipt Number")
+label_item = Label(root, text = "Item Hired")
+label_itemno = Label(root, text = "Number of Items")
+label_rowno = Label(root, text = "Row Number")
 
 
 label7 = Label(root, text="  |  Row  |  ")
@@ -30,24 +78,10 @@ entry4 = Entry(root, width="40")
 entry5 = Entry(root, width="40")
 
 #Buttons labeled here
-button1 = Button(root, text="Append", padx = 30, pady = 10)
+button1 = Button(root, text="Append", padx = 30, pady = 10, command = append)
 button2 = Button(root, text="Print", padx = 30, pady = 10)
 button3 = Button(root, text="Delete", padx = 20, pady = 10)
 button4 = Button(root, text="Exit", padx = 30, pady = 10, command = quit)
-
-
-#Button commands
-
-def quit(): #code for button3 to leave code
-    root.destroy.pack()
-
-
-
-#def save():  # the save button
-     #global variables used
-
-
-
 
 
 
@@ -55,12 +89,12 @@ def quit(): #code for button3 to leave code
 
 
 #labels placed on the grid
-label1.grid(column=1, row=0, columnspan=3)
-label2.grid(column=0, row=1)
-label3.grid(column=0, row=2)
-label4.grid(column=0, row=3)
-label5.grid(column=0, row=4)
-label6.grid(column=0, row=5)
+label_title.grid(column=1, row=0, columnspan=3)
+label_name.grid(column=0, row=1)
+label_receipt.grid(column=0, row=2)
+label_item.grid(column=0, row=3)
+label_itemno.grid(column=0, row=4)
+label_rowno.grid(column=0, row=5)
 
 label7.grid(column=0, row=8)
 label8.grid(column=1, row=8)
