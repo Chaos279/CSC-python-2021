@@ -10,18 +10,20 @@ root=Tk()
 global item_details, entry1, entry2, entry3, entry4, entry5, total_entries, row_count
 total_entries = 0
 item_details = []
-row_count = 0
+
 
 #Button commands
 
 def print(): #print camp details
     global item_details, entry1, entry2, entry3, entry4, entry5, total_entries, row_count
+    row_count = 0
+    
     while row_count < total_entries :
             Label(root, text=row_count).grid(column=0,row=row_count+9) 
-            Label(root, text=(item_details[row_count][0])).grid(column=1,row=row_count+9)
-            Label(root, text=(item_details[row_count][1])).grid(column=2,row=row_count+9)
-            Label(root, text=(item_details[row_count][2])).grid(column=3,row=row_count+9)
-            Label(root, text=(item_details[row_count][3])).grid(column=4,row=row_count+9)
+            Label(root, text="                            "+(item_details[row_count][0])+"                            ").grid(column=1,row=row_count+9)
+            Label(root, text="                            "+(item_details[row_count][1])+"                            ").grid(column=2,row=row_count+9)
+            Label(root, text="                            "+(item_details[row_count][2])+"                            ").grid(column=3,row=row_count+9)
+            Label(root, text="                            "+(item_details[row_count][3])+"                            ").grid(column=4,row=row_count+9)
             row_count +=  1
 
 
@@ -35,7 +37,7 @@ def quit(): #code for button3 to leave code
 
 
  
-def check(data, data_type): #code used to check if the entered value is an integer
+def check(data, data_type): #function used to check if the entered value is an integer
     try:
         data_type(data)
         return True
@@ -45,7 +47,7 @@ def check(data, data_type): #code used to check if the entered value is an integ
 def append():  # add next item to the list
     global item_details, entry1, entry2, entry3, entry4, entry5, total_entries, row_count, error1, error2, error3
     #global variables used
-    if len(entry1.get()) !=1 and len(entry2.get()) !=1 and len(entry3.get()) !=1 and len(entry4.get()) !=1 and check(entry2.get(), int) and check(entry4.get(), int):
+    if len(entry1.get()) !=0 and len(entry2.get()) !=0 and len(entry3.get()) !=0 and len(entry4.get()) !=0 and check(entry2.get(), int) and check(entry4.get(), int):
 
         if 1 <= int(entry4.get()) <= 500:
         
@@ -84,23 +86,31 @@ def append():  # add next item to the list
 
 def delete():
     global item_details, entry1, entry2, entry3, entry4, entry5, total_entries, row_count, error1, error2, error3
+    #find which row is to be deleted and delete it
     if entry5.get() == "":
             for obj in root.grid_slaves(row=5, column=4):
                 obj.destroy()
             error3 = Label(root, text="Please enter a row number", fg="red").grid(column=4, row=5)
-            
+
     elif check(entry5.get(), int):
-            for obj in root.grid_slaves(row=5, column=4):
-                obj.destroy()
-            for obj in root.grid_slaves(row=int(entry5.get())+9):
-                obj.destroy()
-                
+        del item_details[int(entry5.get())]
+        total_entries = total_entries - 1
+        entry5.delete(0,'end')
+        #clear the last item displayed on the GUI
+        Label(root, text="                                  ").grid(column=0,row=row_count+8) 
+        Label(root, text="                                  ").grid(column=1,row=row_count+8)
+        Label(root, text="                                  ").grid(column=2,row=row_count+8)
+        Label(root, text="                                  ").grid(column=3,row=row_count+8)
+        Label(root, text="                                  ").grid(column=4,row=row_count+8)
+        #print all the items in the list
+        print()
+
     else:
             for obj in root.grid_slaves(row=5, column=4):
                 obj.destroy()
-            error3 = Label(root, text="Please enter a number", fg="red").grid(column=4, row=5)
+           error3 = Label(root, text="Please enter a number", fg="red").grid(column=4, row=5)
 
-
+    
 
 
 #All the labels formed here
